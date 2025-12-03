@@ -1,11 +1,18 @@
-<script lang="ts">
-	import favicon from '$lib/assets/favicon.svg';
+<script>
+	import { resolve } from '$app/paths';
 
-	let { children } = $props();
+	const resolvedRoot = resolve('/');
+	const resolvedLogin = resolve('/login');
+	const resolvedSignup = resolve('/signup');
 </script>
 
-<svelte:head>
-	<link rel="icon" href={favicon} />
-</svelte:head>
-
-{@render children()}
+<div class="container">
+	<div class="tabs notification is-primary">
+		<ul>
+			<li><a href={resolvedRoot}>Start</a></li>
+			<li><a href={resolvedLogin}>Login</a></li>
+			<li><a href={resolvedSignup}>Signup</a></li>
+		</ul>
+	</div>
+	<slot />
+</div>
