@@ -1,4 +1,6 @@
 <script lang="ts">
+	import Coordinates from "$lib/ui/Coordinates.svelte";
+
 	const candidateList = [
 		{
 			firstName: "Lisa",
@@ -21,10 +23,12 @@
 	let amount = $state(0);
 	let selectedCandidate = $state("Simpson, Lisa");
 	let selectedMethod = $state("paypal");
+	let lat = $state(52.160858);
+	let lng = $state(-7.15242);
 
 	async function donate() {
 		console.log(`Just donated: ${amount} to ${selectedCandidate} via ${selectedMethod} payment.`);
-		// console.log(`lat: ${lat}, ${lng}`);
+		console.log(`lat: ${lat}, ${lng}`);
 	}
 </script>
 
@@ -51,6 +55,7 @@
 			</select>
 		</div>
 	</div>
+	<Coordinates bind:lat bind:lng />
 	<div class="field">
 		<div class="control">
 			<button class="button is-success is-fullwidth" onclick={() => donate()}>Donate</button>
