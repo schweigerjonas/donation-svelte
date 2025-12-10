@@ -1,23 +1,24 @@
 <script lang="ts">
 	import Coordinates from "$lib/ui/Coordinates.svelte";
 
-	const candidateList = [
-		{
-			firstName: "Lisa",
-			lastName: "Simpson",
-			office: "President"
-		},
-		{
-			firstName: "Bart",
-			lastName: "Simpson",
-			office: "President"
-		},
-		{
-			firstName: "Ned",
-			lastName: "Flanders",
-			office: "President"
-		}
-	];
+	let { candidateList = [] } = $props();
+	// const candidateList: Candidate[] = [
+	// {
+	// 	firstName: "Lisa",
+	// 	lastName: "Simpson",
+	// 	office: "President"
+	// },
+	// {
+	// 	firstName: "Bart",
+	// 	lastName: "Simpson",
+	// 	office: "President"
+	// },
+	// {
+	// 	firstName: "Ned",
+	// 	lastName: "Flanders",
+	// 	office: "President"
+	// }
+	// ];
 	const paymentMethods = ["paypal", "direct"];
 
 	let amount = $state(0);

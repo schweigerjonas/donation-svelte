@@ -54,6 +54,7 @@ export const donationService = {
 		try {
 			axios.defaults.headers.common["Authorization"] = "Bearer " + token;
 			const response = await axios.get(this.baseUrl + "/api/candidates");
+			console.log(response.data);
 			return response.data;
 		} catch (error) {
 			console.log(error);

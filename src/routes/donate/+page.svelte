@@ -1,11 +1,19 @@
 <script lang="ts">
-	import { subTitle } from "$lib/runes.svelte";
+	import { loggedInUser, subTitle } from "$lib/runes.svelte";
 	import Card from "$lib/ui/Card.svelte";
+	import { onMount } from "svelte";
 	import DonateForm from "./DonateForm.svelte";
+	import { donationService } from "$lib/services/donation-service";
+	import type { Candidate } from "$lib/types/donation-types";
 
 	subTitle.text = "Make a Donation";
+	let candidateList: Candidate[] = [];
+
+	onMount(async () => {
+		candidateList = await donationService.getCandidates(loggedInUser.token);
+	});
 </script>
 
 <Card title="Please Donate">
-	<DonateForm />
+	<DonateForm {candidateList} />
 </Card>
