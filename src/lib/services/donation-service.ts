@@ -1,5 +1,5 @@
 import axios from "axios";
-import type { Session, User } from "$lib/types/donation-types";
+import type { Candidate, Donation, Session, User } from "$lib/types/donation-types";
 
 export const donationService = {
 	baseUrl: "http://localhost:3000",
@@ -33,6 +33,42 @@ export const donationService = {
 		} catch (error) {
 			console.log(error);
 			return null;
+		}
+	},
+
+	async donate(donation: Donation, token: string) {
+		try {
+			axios.defaults.headers.common["Authorization"] = "Bearer " + token;
+			const response = await axios.post(
+				this.baseUrl + "/api/candidates/" + donation.candidate + "/donations",
+				donation
+			);
+			return response.status == 200;
+		} catch (error) {
+			console.log(error);
+			return false;
+		}
+	},
+
+	async getCandidates(token: string): Promise<Candidate[]> {
+		try {
+			axios.defaults.headers.common["Authorization"] = "Bearer " + token;
+			const response = await axios.get(this.baseUrl + "/api/candidates");
+			return response.data;
+		} catch (error) {
+			console.log(error);
+			return [];
+		}
+	},
+
+	async getDonations(token: string): Promise<Donation[]> {
+		try {
+			axios.defaults.headers.common["Authorization"] = "Bearer " + token;
+			const response = await axios.get(this.baseUrl + "/api/donations");
+			return response.data;
+		} catch (error) {
+			console.log(error);
+			return [];
 		}
 	}
 };
