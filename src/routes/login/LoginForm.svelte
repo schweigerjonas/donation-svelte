@@ -18,7 +18,8 @@
 			loggedInUser.name = session.name;
 			loggedInUser.token = session.token;
 			loggedInUser._id = session._id;
-			console.log(`Session: ${JSON.stringify(session)}`);
+
+			localStorage.donation = JSON.stringify(loggedInUser);
 
 			goto("/donate");
 		} else {

@@ -6,6 +6,7 @@
 	loggedInUser.name = "";
 	loggedInUser.token = "";
 	loggedInUser._id = "";
+	localStorage.removeItem("donation");
 
 	goto("/");
 </script>
